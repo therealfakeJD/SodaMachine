@@ -11,13 +11,14 @@ namespace SodaMachineProject
         public bool runSodaMachine = true;
         public int choice;
         public SodaMachine sodaMachine;
-        public Payment pay;
+        //public Payment pay;
+        public double payListMoney;
         public SodaMachineMenu()
         {
             sodaMachine = new SodaMachine();
-            pay = new Payment();
+            //pay = new Payment();
 
-            
+
             Console.WriteLine("");
             runSodaMachineMenu();
         }
@@ -42,13 +43,13 @@ namespace SodaMachineProject
                 switch (choice)
                 {
                     case 1:
-                        sodaMachine.buyGrapeSoda(pay.payForDrink());
+                        sodaMachine.buyGrapeSoda(sodaMachine.pay.payForDrink(),sodaMachine.pay.payListValue);
                         break;
                     case 2:
-                        sodaMachine.buyOrangeSoda(pay.payForDrink());
+                        sodaMachine.buyOrangeSoda(sodaMachine.pay.payForDrink(), sodaMachine.pay.payListValue);
                         break;
                     case 3:
-                        sodaMachine.buyMeatSoda(pay.payForDrink());
+                        sodaMachine.buyMeatSoda(sodaMachine.pay.payForDrink(), sodaMachine.pay.payListValue);
                         break;
                     case 4:
                         Console.WriteLine(sodaMachine.ToString());
