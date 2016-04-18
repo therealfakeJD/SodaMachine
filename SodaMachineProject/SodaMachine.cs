@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace SodaMachineProject
 {
@@ -23,11 +21,11 @@ namespace SodaMachineProject
         public int grapeSodasLeft;
         public int orangeSodasLeft;
         public int meatSodasLeft;
-        
-      
+
+
         public SodaMachine()
         {
-            
+
             totalSodaMachineChange = 0;
             totalSodasInMachine = 0;
             coins = new List<Coin>();
@@ -35,7 +33,7 @@ namespace SodaMachineProject
             payList = pay.payList;
             fillInitChange();
             fillInitSoda();
-          
+
 
         }
 
@@ -65,7 +63,7 @@ namespace SodaMachineProject
                 totalSodaMachineChange += penny.value;
             }
 
-           }
+        }
 
         public void fillInitSoda()
         {
@@ -85,7 +83,7 @@ namespace SodaMachineProject
             {
                 sodas.Add(meat);
                 meatSodasLeft += meat.soda;
-               
+
             }
             totalSodasInMachine = sodas.Count;
         }
@@ -93,7 +91,7 @@ namespace SodaMachineProject
 
         public Soda buyGrapeSoda(List<Coin> payList, double payListValue)
         {
-           
+
             if (grape.sodaCost == pay.payListValue)
             {
                 totalSodaMachineChange += pay.payListValue;
@@ -104,23 +102,23 @@ namespace SodaMachineProject
                 dispenseGrapeSoda();
                 pay.clearPayList();
                 Console.WriteLine("Your change for this transaction is {0}", pay.payListValue);
-            } 
+            }
             else if (grape.sodaCost < pay.payListValue)
             {
-                
+
                 pay.payListValue -= grape.sodaCost;
                 pay.payListValue += pay.changeValue;
                 totalSodaMachineChange += grape.sodaCost;
                 dispenseGrapeSoda();
                 Console.WriteLine("\nYou paid too much for the {0} soda, your change is ${1:C}\n", grape, pay.payListValue);
-                
+
                 pay.clearPayList();
             }
             else
             {
                 Console.WriteLine("\nThat is not enought for the {0} soda, you still have ${1:C}\n", grape, pay.payListValue);
             }
-           
+
             return grape;
         }
 
@@ -166,7 +164,7 @@ namespace SodaMachineProject
             }
             else if (meat.sodaCost < payListValue)
             {
-                payListValue -= meat.sodaCost;
+                pay.payListValue -= meat.sodaCost;
                 totalSodaMachineChange += meat.sodaCost;
                 dispenseMeatSoda();
                 Console.WriteLine("\nYou paid too much for the {0} soda, your change is ${1:C}\n", meat, pay.payListValue);
@@ -192,7 +190,7 @@ namespace SodaMachineProject
             orangeSodasLeft -= orange.soda;
             totalSodasInMachine = sodas.Count;
             Console.WriteLine("You have purchased a {0} soda", orange);
-            
+
         }
 
         public void dispenseMeatSoda()
@@ -203,7 +201,7 @@ namespace SodaMachineProject
             Console.WriteLine("You have purchased a {0} soda", meat);
         }
 
-     
+
         public override string ToString()
         {
             return string.Format("\nSoda Machine Change Total: {0:C} \n Sodas left in Machine: {1} \n Grape Sodas Left: {2} \n Orange Sodas Left: {3} \n Meat Sodas Left: {4} \n\n", totalSodaMachineChange, totalSodasInMachine, grapeSodasLeft, orangeSodasLeft, meatSodasLeft);
